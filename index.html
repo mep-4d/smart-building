@@ -1,1 +1,65 @@
-<p>TEST</p>
+<!DOCTYPE html>
+<html>
+<head>
+    
+<title>Smart Building Toolkit</title>
+<meta charset="UTF-8">
+<link rel="icon" href="http://example.com/favicon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+<script src="./index.js" defer></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+</head>
+
+<body class="n0-light-grey">
+
+<!-- Top container -->
+<div class="n0-bar n0-top n0-indigo n0-large" style="z-index:4">
+  <span class="n0-bar-item n0-right"><b>Attain Energy Platform - 4 Millbank</b></span>
+</div>
+<br>
+<div class="n0-container n0-padding-32">
+
+<p>
+  <a href="https://attain.aeronlabs.com/energy/?project=project012" class="n0-button n0-block n0-round-large n0-teal" style="text-decoration: none; color: inherit; display: block; text-align: center; padding: 8px; border: none; cursor: pointer;">
+    Energy Report
+  </a>
+</p>
+<p>
+  <a href="https://attain.aeronlabs.com/fdd/?project=project012" class="n0-button n0-block n0-round-large n0-teal" style="text-decoration: none; color: inherit; display: block; text-align: center; padding: 8px; border: none; cursor: pointer;">
+    FDD Report
+  </a>
+</p>
+<p>
+  <a href="https://attain.aeronlabs.com/plant/?project=project012" class="n0-button n0-block n0-round-large n0-red" v-on:click="" style="text-decoration: none; color: inherit; display: block; text-align: center; padding: 8px; border: none; cursor: pointer;">
+    Plant Viewer App
+  </a>
+</p>
+<p>
+  <a href="https://attain.aeronlabs.com/lifecycle/?project=project012" class="n0-button n0-block n0-round-large n0-red" v-on:click="" style="text-decoration: none; color: inherit; display: block; text-align: center; padding: 8px; border: none; cursor: pointer;">
+    PLM Maintenance App
+  </a>
+</p>
+
+</div>
+    
+<script>
+function printPage() {
+    window.print();
+}
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+</script>
+
+</body>
+</html>
