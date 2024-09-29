@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+
+    <title>MSI Tools</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://example.com/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="./index.js" defer></script>
+
+    <style>
+        html,
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
+
+</head>
+
+<body class="n0-light-grey">
+
+    <div id="naming">
+
+        <!-- Top container -->
+        <div class="n0-bar n0-top n0-indigo n0-large" style="z-index:4">
+            <button class="n0-bar-item n0-button n0-hide-large n0-hover-none n0-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+            <span class="n0-bar-item n0-right"><b>Smart Enablement Toolkit</b></span>
+        </div>
+
+        <!-- Sidebar/menu -->
+        <nav class="n0-sidebar n0-collapse n0-white n0-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+            <div class="n0-container n0-row">
+                <div class="n0-col s4">
+                    <!--<img src="/w3images/avatar2.png" class="n0-circle n0-margin-right" style="width:46px">-->
+                </div>
+                <div class="n0-col s8 n0-bar">
+                    <span>Welcome <strong>MSI</strong></span><br>
+                    <a href="#" class="n0-bar-item n0-button"><i class="fa fa-envelope"></i></a>
+                    <a href="#" class="n0-bar-item n0-button"><i class="fa fa-user"></i></a>
+                    <a href="#" class="n0-bar-item n0-button"><i class="fa fa-cog"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="n0-container">
+                <h5>Menu</h5>
+            </div>
+            <div class="n0-bar-block">
+                <a href="#" class="n0-bar-item n0-button n0-padding-16 n0-hide-large n0-dark-grey n0-hover-black"
+                    onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+                <a href="/semantics"
+                    class="n0-bar-item n0-button n0-padding"><i class="fa fa-home"></i>  Home</a>
+            </div>
+        </nav>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="n0-overlay n0-hide-large n0-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+            title="close side menu" id="myOverlay"></div>
+
+        <!-- !PAGE CONTENT! -->
+        <div class="n0-main" style="margin-left:300px;margin-top:43px;">
+
+            <!-- Header -->
+            <header class="n0-container">
+                <h3><b>Item Naming Tool</b></h3>
+            </header>
+
+            <div class="n0-container n0-padding-16 n0-teal">
+                <h3>Asset Naming</h3>
+                <div class="n0-row-padding-small">
+                    <div class="n0-quarter">
+                        <select v-model="selectA" v-on:change="setSystem()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select System</option>
+                        <option v-for="item in list01">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="n0-quarter">
+                        <select v-model="selectB" v-on:change="setItem()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select Item</option>
+                        <option v-for="item in list02">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="n0-quarter">
+                        <select v-model="selectC" class="n0-select" name="option">
+                        <option value="" disabled selected>Select Floor</option>
+                        <option v-for="item in list03">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="n0-quarter">
+                        <div class="n0-container">
+                            <input v-on:input="inputA($event)" class="n0-input n0-border" type="number" placeholder="input Floor/Item Identifier">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="n0-container n0-padding-16 n0-teal">
+                <button v-on:click="getAssetName()" class="n0-button n0-ripple n0-green">Get Asset ID String</button>
+                <h5>Asset Name: <b>{{ assetName }}</b></h5>
+            </div>
+
+            <hr>
+
+            <div class="n0-container n0-padding-16 n0-teal">
+                <h3>Point Naming</h3>
+                <div class="n0-row-padding-small">
+                    <div class="n0-third">
+                        <select v-model="selectD" v-on:change="set()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select Context</option>
+                        <option v-for="item in list04">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="n0-third">
+                        <select v-model="selectE" v-on:change="set()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select Variable</option>
+                        <option v-for="item in list05">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="n0-third">
+                        <select v-model="selectF" v-on:change="set()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select Point Type</option>
+                        <option v-for="item in list06">{{ item }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="n0-container n0-padding-16 n0-teal">
+                <button v-on:click="getPointName()" class="n0-button n0-ripple n0-green">Get Point ID String</button>
+                <h5>Point Name: <b>{{ pointName }}</b></h5>
+            </div>
+
+            <hr>
+
+
+            <!-- Footer -->
+            <footer class="n0-container n0-padding-16 n0-light-grey">
+                <p>Powered by Nick Willment</p>
+            </footer>
+
+        </div>
+        <!-- End page content -->
+    </div>
+
+    <script>
+        // Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  console.log("should be working yo");
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+    </script>
+
+</body>
+
+</html>
