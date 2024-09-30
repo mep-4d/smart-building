@@ -88,7 +88,8 @@ const app = Vue.createApp({
               return result;
             };
             var type = this.item;
-            var floor = generateString();
+            //var floor = generateString();
+            var floor = "FFF-"
             var inst = "NNNN-"
             var proj = "ABCD"
             this.equipmentReference = "Equipment Name : " + type + "-" + floor + inst + proj + " , where FFF is a floor number or reference i.e. 001,B01,11E, and NNNN is a unique equipment instance/reference for that floor, and ABCD is the unique Attain project reference"
