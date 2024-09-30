@@ -50,7 +50,7 @@ const app = Vue.createApp({
                         var self = this
                         self.dataObject = data
                         for (var i=0; i<data[0].length; i++) {
-                            this.list02.push(data[0][i][0])
+                            this.listB.push(data[0][i][0])
                         }
                     });
                 }
