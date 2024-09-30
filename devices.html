@@ -100,16 +100,22 @@
             <div class="n0-container n0-padding-16 n0-teal">
                 <h3>Configuration Detail</h3>
                 <div class="n0-row-padding-small">
-                    <div class="n0-half">
+                    <div class="n0-third">
                         <p>Telemetry</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataT" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
                     </div>
-                    <div class="n0-half">
+                    <div class="n0-third">
                         <p>Attributes</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
+                        </ul>
+                    </div>
+                    <div class="n0-third">
+                        <p>Logic</p>
+                        <ul>
+                            <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
                     </div>
                 </div>
