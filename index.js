@@ -59,18 +59,17 @@ const app = Vue.createApp({
         },
 
         setItem() {
-            var x = this.selectB; var y = this.dataObject;
+            var x = this.selectB; 
+            var y = this.dataObject;
             for (var i=0; i<y[0].length; i++) {
                 if (y[0][i][0] == x) {
                     this.item = y[0][i][1]
                     this.sys = y[0][i][2]
                 }
             }
-            console.log(x); console.log(y); console.log(this.item)
-        },
-
-        inputA() {
-            this.identifier = event.target.value
+            //console.log(x); 
+            //console.log(y); 
+            console.log(this.item)
         },
 
         getAssetName() {
