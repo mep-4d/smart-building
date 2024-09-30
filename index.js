@@ -23,8 +23,7 @@ const app = Vue.createApp({
                 "Renewable Energy",
                 "Appliances"
             ],
-            //listB:"",
-            listB:[],
+            listB: [],
             item:"",
             sys:"",
             equipmentReference:"",
@@ -39,7 +38,6 @@ const app = Vue.createApp({
 
         setSystem() {
             var x = this.selectA;
-            //this.listB = [];
             this.selectC = "";
             this.equipmentReference = "";
             url = `https://attain.aeronlabs.com/getDevicesData?sys=${x}`;
