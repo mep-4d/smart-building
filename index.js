@@ -26,7 +26,6 @@ const app = Vue.createApp({
             listB:"",
             item:"",
             sys:"",
-            identifier:"",
             equipmentReference:"",
             pointName: "",
         };
@@ -69,27 +68,16 @@ const app = Vue.createApp({
             //console.log(x); 
             //console.log(y); 
             console.log(this.item)
+            this.getAssetName()
         },
 
         getAssetName() {
-            var str;
-            var id = this.identifier;
-
-            if (id.toString().length == 1) {
-                str = "00".concat(id)
-            } else if (id.toString().length == 2) {
-                str = "0".concat(id)
-            } else if (id == "") {
-                str = "AAA | where AAA is a unique numeric item reference for that floor"
-            } else {
-                str = id
-            }
-            this.assetName = this.sys + "_" + this.item + "_" + this.selectC + "_" + str
-        },
-
-        getPointName() {
-            this.pointName = this.selectD + "_" + this.selectE + "_" + this.selectF
-        },
+            var type = this.item;
+            var floor = "FFF-";
+            var inst = "NNNN-"
+            var proj = "ABCD"
+            this.equipmentReference = "Equipment Name : " + type + "-" + floor + inst + proj
+        }
 
     },
 
