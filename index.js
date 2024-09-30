@@ -64,8 +64,9 @@ const app = Vue.createApp({
                     this.sys = y[0][i][2]
                 }
             }
-            console.log(this.item);
-            url = `https://attain.aeronlabs.com/getDeviceConfig?item=${x}`;
+            var z = this.item;
+            console.log(z);
+            url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
             fetch(url).then(res => {
                 if (res.status === 200) {
                     // SUCCESS
