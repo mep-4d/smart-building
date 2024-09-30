@@ -27,7 +27,7 @@ const app = Vue.createApp({
             item:"",
             sys:"",
             identifier:"",
-            assetName:"",
+            equipmentReference:"",
             pointName: "",
         };
     },
