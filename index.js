@@ -37,6 +37,7 @@ const app = Vue.createApp({
 
         setSystem() {
             var x = this.selectA;
+            this.selectB = "select item"
             this.listB = [];
             this.equipmentReference = "";
             url = `https://attain.aeronlabs.com/getDevicesData?sys=${x}`;
