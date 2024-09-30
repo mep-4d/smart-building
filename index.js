@@ -5,6 +5,7 @@ const app = Vue.createApp({
             dataObject:"",
             selectA:"",
             selectB:"",
+            selectC:"",
             listA: [
                 "General MEP", 
                 "HVAC-R", 
@@ -38,7 +39,7 @@ const app = Vue.createApp({
 
         setSystem() {
             var x = this.selectA;
-            this.list02 = [];
+            this.listB = [];
             this.name = "";
             this.selectC = "";
             url = `https://attain.aeronlabs.com/getDevicesData?sys=${x}`;
