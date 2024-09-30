@@ -101,11 +101,13 @@
                 <h3>Configuration Detail</h3>
                 <div class="n0-row-padding-small">
                     <div class="n0-half">
+                        <p>Telemetry</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataT" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
                     </div>
                     <div class="n0-half">
+                        <p>Attributes</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
