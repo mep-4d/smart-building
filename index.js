@@ -81,7 +81,7 @@ const app = Vue.createApp({
         getAssetName() {
             var type = this.item;
             var floor = () => {
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                 return Array.from({ length: 3 }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
             };
             var inst = "NNNN-"
