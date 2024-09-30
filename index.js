@@ -26,7 +26,8 @@ const app = Vue.createApp({
             item:"",
             sys:"",
             equipmentReference:"",
-            pointName: "",
+            deviceDataT: "",
+            deviceDataA: ""
         };
     },
 
@@ -45,8 +46,6 @@ const app = Vue.createApp({
                     // SUCCESS
                     res.json().then(data => {
                         console.log(data);
-                        var self = this
-                        self.dataObject = data
                         for (var i=0; i<data[0].length; i++) {
                             this.listB.push(data[0][i][0])
                         }
