@@ -27,7 +27,8 @@ const app = Vue.createApp({
             sys:"",
             equipmentReference:"",
             deviceDataT: "",
-            deviceDataA: ""
+            deviceDataA: "",
+            deviceDataL: ""
         };
     },
 
@@ -74,6 +75,7 @@ const app = Vue.createApp({
                         console.log(data);
                         this.deviceDataT = data.telemetry;
                         this.deviceDataA = data.attributes;
+                        this.deviceDataL = data.logic;
                     });
                 }
             });
