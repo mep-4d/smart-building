@@ -72,6 +72,8 @@ const app = Vue.createApp({
                     // SUCCESS
                     res.json().then(data => {
                         console.log(data);
+                        this.deviceDataT = data.telemetry;
+                        this.deviceDataA = data.attributes;
                     });
                 }
             });
