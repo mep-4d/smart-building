@@ -65,8 +65,6 @@ const app = Vue.createApp({
                     this.sys = y[0][i][2]
                 }
             }
-            //console.log(x); 
-            //console.log(y); 
             console.log(this.item)
             this.getAssetName()
         },
