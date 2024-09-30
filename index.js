@@ -1,60 +1,130 @@
-// Create object for use by the HTML view
-var controller = new App();
+const app = Vue.createApp({
 
-// JavaScript "class" containing the model, providing controller "methods" for the HTML view
-function App() {
-    
-    console.log("Creating controller/model");
-    
-    var devices = [];
-    var holder = -1;
-    
-    // GET DEVICES DATA FROM DATABASE
-    fetch("https://api.apispreadsheets.com/data/aTpfoiLmlj4uYKI7/").then(res=>{
-	if (res.status === 200){
-		// SUCCESS
-		res.json().then(data=>{
-			var self = globalThis;
-			self.deviceData = data;
-			console.log(data);
-		}).catch(err => console.log(err));
-	}
-    });
+    data() {
+        return {
+            dataObject:"",
+            selectA:"",
+            selectB:"",
+            selectC: "",
+            selectD: "",
+            selectE: "",
+            selectF: "",
+            list01: [
+                "General MEP", 
+                "HVAC-R", 
+                "Electrical Service", 
+                "Metering System",
+                "Security System",
+                "Audio/Visual System",
+                "Vertical Transportation",
+                "Waste Management",
+                "Catering",
+                "Smart Sensors",
+                "ICT",
+                "Fire/Smoke System",
+                "Lighting",
+                "Renewable Energy",
+                "Appliances"
+            ],
+            list02:"",
+            list03: [
+                "B2","B1","00","01","02","03","04","05",
+                "06","07","08","09","10","11","12","13"
+            ],
+            list04: [
+                "air", "air_diff", "inlet_air", "return_air", "supply_air", "exhaust_air",
+                "water", "water_diff", "return_water", "flow_water","storage_water",
+                "off_coil","space","duct","frost","high_limit","low_limit","ambient","general","global","capacity",
+                "unit","zone"
+            ],
+            list05: [
+                "temperature","pressure","flow","humidity","lux","co2","voc","co","no2","o3","run","fault","level","intensity","mode"
+            ],
+            list06: [
+                "sensor", "setpoint", "value", "input", "output", "status"
+            ],
+            item:"",
+            sys:"",
+            identifier:"",
+            assetName:"",
+            pointName: "",
+        };
+    },
 
-    // SELECT SYSTEM FROM DROPDOWN
-    $('#sysSelect').on('click', function () {
-    devices = []; holder = -1; // RESET OBJECT
-    var self = globalThis;
-    self.select = $("#sysSelect").val(); // SET select TO DROPDOWN SELECTION
-    console.log(select);
-    
-    // SET devices TO APPLICABLE SYSTEM DEVICES FROM DATABASE
-    for (var i=0; i<deviceData.data.length; i++) {
-        if (deviceData.data[i].system === select) {
-            devices.push(deviceData.data[i]);
-        }
+    computed: {
+    },
+
+    methods: {
+
+        setSystem() {
+            var x = this.selectA;
+            this.list02 = [];
+            this.name = "";
+            this.selectC = "";
+            url = `https://msi.aeronlabs.com/deviceNames?sys=${x}`;
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    // SUCCESS
+                    res.json().then(data => {
+                        console.log(data);
+                        var self = this
+                        self.dataObject = data
+                        for (var i=0; i<data[0].length; i++) {
+                            this.list02.push(data[0][i][0])
+                        }
+                    });
+                }
+            });
+        },
+
+        setItem() {
+            var x = this.selectB; var y = this.dataObject;
+            for (var i=0; i<y[0].length; i++) {
+                if (y[0][i][0] == x) {
+                    this.item = y[0][i][1]
+                    this.sys = y[0][i][2]
+                }
+            }
+            console.log(x); console.log(y); console.log(this.item)
+        },
+
+        inputA() {
+            this.identifier = event.target.value
+        },
+
+        getAssetName() {
+            var str;
+            var id = this.identifier;
+
+            if (id.toString().length == 1) {
+                str = "00".concat(id)
+            } else if (id.toString().length == 2) {
+                str = "0".concat(id)
+            } else if (id == "") {
+                str = "AAA | where AAA is a unique numeric item reference for that floor"
+            } else {
+                str = id
+            }
+            this.assetName = this.sys + "_" + this.item + "_" + this.selectC + "_" + str
+        },
+
+        getPointName() {
+            this.pointName = this.selectD + "_" + this.selectE + "_" + this.selectF
+        },
+
+    },
+
+    mounted: function () {
+        uibuilder.start();
+        var vueApp = this;
+
+        uibuilder.onChange('msg', function (newVal) {
+
+            uibuilder.send({ 'topic': 'logged', 'payload': "test" });
+            //vueApp.value021 = newVal.payload[3][0][0];
+            //document.getElementById("value021").style.width = vueApp.value021;
+        });
     }
-    
-    });
-    
-    this.prevDev = function() { // DECREMENT SYSTEM DEVICE TYPES
-        if (holder > 0) {
-            holder--;
-                $("#deviceInfo001").text(devices[holder].item);
-                $("#deviceInfo002").text(devices[holder].manufacturer);
-                $("#deviceInfo003").text(devices[holder].model);
-        }
-    console.log(holder);
-    };
-    
-    this.nextDev = function() { // INCREMENT SYSTEM DEVICE TYPES
-        if (holder < (devices.length - 1)) {
-            holder++;
-                $("#deviceInfo001").text(devices[holder].item);
-                $("#deviceInfo002").text(devices[holder].manufacturer);
-                $("#deviceInfo003").text(devices[holder].model);
-        }
-    console.log(holder);
-    };
-    
-}
+});
+
+app.mount('#devices');
