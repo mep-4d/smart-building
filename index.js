@@ -79,11 +79,16 @@ const app = Vue.createApp({
         },
 
         getAssetName() {
-            var type = this.item;
-            var floor = () => {
-                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-                return Array.from({ length: 3 }, () => chars.charAt(Math.floor(Math.random() * chars.length))).join('');
+            const generateString = function() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+              for (let i = 0; i < 3; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+              }    
+              return result;
             };
+            var type = this.item;
+            var floor = generateString();
             var inst = "NNNN-"
             var proj = "ABCD"
             this.equipmentReference = "Equipment Name : " + type + "-" + floor + inst + proj + " , where FFF is a floor number or reference i.e. 001,B01,11E, and NNNN is a unique equipment instance/reference for that floor, and ABCD is the unique Attain project reference"
