@@ -64,8 +64,17 @@ const app = Vue.createApp({
                     this.sys = y[0][i][2]
                 }
             }
-            console.log(this.item)
-            this.getAssetName()
+            console.log(this.item);
+            url = `https://attain.aeronlabs.com/getDevicesConfig?item=${x}`;
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    // SUCCESS
+                    res.json().then(data => {
+                        console.log(data);
+                    });
+                }
+            });
+            this.getAssetName();
         },
 
         getAssetName() {
