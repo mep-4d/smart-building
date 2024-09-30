@@ -40,6 +40,7 @@ const app = Vue.createApp({
             var x = this.selectA;
             this.listB = [];
             this.selectC = "";
+            this.equipmentReference = "";
             url = `https://attain.aeronlabs.com/getDevicesData?sys=${x}`;
             fetch(url).then(res => {
                 if (res.status === 200) {
