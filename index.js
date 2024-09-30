@@ -77,11 +77,7 @@ const app = Vue.createApp({
             this.equipmentReference = "Equipment Name : " + type + "-" + floor + inst + proj + " , where FFF is a floor number or reference i.e. 001,B01,11E, and NNNN is a unique equipment instance/reference for that floor, and ABCD is the unique Attain project reference"
         }
 
-    },
-
-    //mounted: function () {
-        //var vueApp = this;
-    //}
+    }
     
 });
 
