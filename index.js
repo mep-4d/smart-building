@@ -115,16 +115,9 @@ const app = Vue.createApp({
     },
 
     mounted: function () {
-        uibuilder.start();
         var vueApp = this;
-
-        uibuilder.onChange('msg', function (newVal) {
-
-            uibuilder.send({ 'topic': 'logged', 'payload': "test" });
-            //vueApp.value021 = newVal.payload[3][0][0];
-            //document.getElementById("value021").style.width = vueApp.value021;
-        });
     }
+    
 });
 
-app.mount('#devices');
+app.mount('#smartBldgDesign');
