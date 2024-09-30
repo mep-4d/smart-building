@@ -83,9 +83,9 @@ const app = Vue.createApp({
 
     },
 
-    mounted: function () {
-        var vueApp = this;
-    }
+    //mounted: function () {
+        //var vueApp = this;
+    //}
     
 });
 
