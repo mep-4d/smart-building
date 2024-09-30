@@ -101,19 +101,19 @@
                 <h3>Configuration Detail</h3>
                 <div class="n0-row-padding-small">
                     <div class="n0-third">
-                        <p>Telemetry</p>
+                        <p>Timeseries - Sent every 15 minutes</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataT" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
                     </div>
                     <div class="n0-third">
-                        <p>Attributes</p>
+                        <p>Semi-Static Data - Change at setup</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
                     </div>
                     <div class="n0-third">
-                        <p>Logic</p>
+                        <p>Logic - Backend data handling</p>
                         <ul>
                             <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
                         </ul>
