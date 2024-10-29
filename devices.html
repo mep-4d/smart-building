@@ -107,15 +107,15 @@
             </ul>
         </div>
         <div class="n0-third n0-border n0-round n0-padding n0-card">
-            <p>Semi-Static Data - Change at setup</p>
+            <p>Required Telemetry</p>
             <ul>
-                <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
+                <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
             </ul>
         </div>
         <div class="n0-third n0-border n0-round n0-padding n0-card">
-            <p>Aggregation logic</p>
+            <p>Semi-Static Data - Change at setup</p>
             <ul>
-                <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
+                <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
             </ul>
         </div>
     </div>
