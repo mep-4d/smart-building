@@ -107,15 +107,15 @@
             </ul>
         </div>
         <div class="n0-third n0-border n0-round n0-padding n0-card">
-            <p>Required Telemetry - Validate at Edge</p>
-            <ul>
-                <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
-            </ul>
-        </div>
-        <div class="n0-third n0-border n0-round n0-padding n0-card">
             <p>Semi-Static Data - Change at setup</p>
             <ul>
                 <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
+            </ul>
+        </div>
+        <div class="n0-third n0-border n0-round n0-padding n0-card">
+            <p>Device Logic - Telemetry Parsing</p>
+            <ul>
+                <li v-for="(value, key) in deviceDataL" :key="key">{{ key }}: {{ value }}</li>
             </ul>
         </div>
     </div>
@@ -133,7 +133,7 @@ var overlayBg = document.getElementById("myOverlay");
 
 // Toggle between showing and hiding the sidebar, and add overlay effect
 function w3_open() {
-  console.log("should be working yo");
+  console.log("blahBlahBlah");
   if (mySidebar.style.display === 'block') {
     mySidebar.style.display = 'none';
     overlayBg.style.display = "none";
