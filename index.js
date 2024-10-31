@@ -75,7 +75,7 @@ const app = Vue.createApp({
                         console.log(data);
                         this.deviceDataT = data.telemetry;
                         this.deviceDataA = data.attributes;
-                        this.deviceDataL = data.required;
+                        this.deviceDataL = data.logic;
                     });
                 }
             });
