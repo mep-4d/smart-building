@@ -44,7 +44,6 @@ const app = Vue.createApp({
             url = `https://attain.aeronlabs.com/getDevicesData?sys=${x}`;
             fetch(url).then(res => {
                 if (res.status === 200) {
-                    // SUCCESS
                     res.json().then(data => {
                         console.log(data);
                         this.dataObject = data
@@ -70,7 +69,6 @@ const app = Vue.createApp({
             url = https://attain.aeronlabs.com/getDeviceConfig?item=${z};
             fetch(url).then(res => {
                 if (res.status === 200) {
-                    // SUCCESS
                     res.json().then(data => {
                         console.log(data);
                         this.deviceDataT = data.telemetry;
