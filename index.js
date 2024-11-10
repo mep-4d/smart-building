@@ -26,9 +26,9 @@ const app = Vue.createApp({
             item:"",
             sys:"",
             equipmentReference:"",
-            deviceDataT: {"config":"not yet defined, contact Attain"},
-            deviceDataA: {"config":"not yet defined, contact Attain"},
-            deviceDataL: {"config":"not yet defined, contact Attain"}
+            deviceDataT: "",
+            deviceDataA: "",
+            deviceDataL: ""
         };
     },
 
@@ -56,6 +56,9 @@ const app = Vue.createApp({
         },
 
         setItem() {
+            this.deviceDataT = {"config":"not yet defined, contact Attain"};
+            this.deviceDataA = {"config":"not yet defined, contact Attain"};
+            this.deviceDataL = {"config":"not yet defined, contact Attain"};
             var x = this.selectB; 
             var y = this.dataObject;
             for (var i=0; i<y[0].length; i++) {
