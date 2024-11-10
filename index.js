@@ -34,13 +34,13 @@ const app = Vue.createApp({
     },
 
     computed: {
-        this.getPoints();
+        getPoints();
     },
 
     methods: {
 
         getPoints() {
-            url = 'https://attain.aeronlabs.com/getPoints';
+            const url = 'https://attain.aeronlabs.com/getPoints';
             fetch(url).then(res => {
                 if (res.status === 200) {
                     res.json().then(data => {
