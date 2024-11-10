@@ -56,9 +56,6 @@ const app = Vue.createApp({
         },
 
         setItem() {
-            this.deviceDataT = {"config":"not yet defined, contact Attain"};
-            this.deviceDataA = {"config":"not yet defined, contact Attain"};
-            this.deviceDataL = {"config":"not yet defined, contact Attain"};
             var x = this.selectB; 
             var y = this.dataObject;
             for (var i=0; i<y[0].length; i++) {
@@ -70,17 +67,21 @@ const app = Vue.createApp({
             var z = this.item;
             console.log(z);
             url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
-            fetch(url).then(res => {
-                if (res.status === 200) {
-                    res.json().then(data => {
-                        console.log(data);
-                        //test
-                        this.deviceDataT = data.telemetry;
-                        this.deviceDataA = data.attributes;
-                        this.deviceDataL = data.logic;
-                    });
-                }
-            });
+fetch(url).then(res => {
+    if (res.status === 200) {
+        res.json().then(data => {
+            console.log(data);
+            // Assuming this is within a class method where `this` is bound correctly
+            this.deviceDataT = data.telemetry;
+            this.deviceDataA = data.attributes;
+            this.deviceDataL = data.logic;
+        });
+    }
+}).catch(error => {
+            this.deviceDataT = {"config":"not yet defined, contact Attain"};
+            this.deviceDataA = {"config":"not yet defined, contact Attain"};
+            this.deviceDataL = {"config":"not yet defined, contact Attain"};
+});
             this.getAssetName();
         },
 
