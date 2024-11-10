@@ -55,35 +55,50 @@ const app = Vue.createApp({
             });
         },
 
-        setItem() {
-            var x = this.selectB; 
-            var y = this.dataObject;
-            for (var i=0; i<y[0].length; i++) {
-                if (y[0][i][0] == x) {
-                    this.item = y[0][i][1];
-                    this.sys = y[0][i][2];
-                }
-            }
-            var z = this.item;
-            console.log(z);
-            url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
-fetch(url).then(res => {
-    if (res.status === 200) {
-        res.json().then(data => {
-            console.log(data);
-            // Assuming this is within a class method where `this` is bound correctly
-            this.deviceDataT = data.telemetry;
-            this.deviceDataA = data.attributes;
-            this.deviceDataL = data.logic;
-        });
+setItem() {
+    const x = this.selectB; 
+    const y = this.dataObject;
+    for (let i = 0; i < y[0].length; i++) {
+        if (y[0][i][0] === x) {
+            this.item = y[0][i][1];
+            this.sys = y[0][i][2];
+        }
     }
-}).catch(error => {
-            this.deviceDataT = {"config":"not yet defined, contact Attain"};
-            this.deviceDataA = {"config":"not yet defined, contact Attain"};
-            this.deviceDataL = {"config":"not yet defined, contact Attain"};
-});
-            this.getAssetName();
-        },
+    
+    const z = this.item;
+    console.log(z);
+    const url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
+    
+    fetch(url).then(res => {
+        if (res.ok) {  // Checks if the status code is in the 200–299 range
+            return res.json().then(data => {
+                console.log(data);
+                // Update device data fields if JSON parsing is successful
+                this.deviceDataT = data.telemetry || {"config": "not defined"};
+                this.deviceDataA = data.attributes || {"config": "not defined"};
+                this.deviceDataL = data.logic || {"config": "not defined"};
+            }).catch(jsonError => {
+                console.error("JSON parsing error:", jsonError);
+                // Set default values if JSON is invalid or empty
+                this.deviceDataT = {"config": "not yet defined, contact Attain"};
+                this.deviceDataA = {"config": "not yet defined, contact Attain"};
+                this.deviceDataL = {"config": "not yet defined, contact Attain"};
+            });
+        } else {
+            console.warn("Server responded with status:", res.status);
+            this.deviceDataT = {"config": "not yet defined, contact Attain"};
+            this.deviceDataA = {"config": "not yet defined, contact Attain"};
+            this.deviceDataL = {"config": "not yet defined, contact Attain"};
+        }
+    }).catch(error => {
+        console.error("Fetch error:", error);
+        this.deviceDataT = {"config": "not yet defined, contact Attain"};
+        this.deviceDataA = {"config": "not yet defined, contact Attain"};
+        this.deviceDataL = {"config": "not yet defined, contact Attain"};
+    });
+
+    this.getAssetName();
+}
 
         getAssetName() {
             const generateString = function() {
