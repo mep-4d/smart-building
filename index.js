@@ -26,9 +26,9 @@ const app = Vue.createApp({
             item:"",
             sys:"",
             equipmentReference:"",
-            deviceDataT: "not yet defined, contact Attain",
-            deviceDataA: "not yet defined, contact Attain",
-            deviceDataL: "not yet defined, contact Attain"
+            deviceDataT: {"config":"not yet defined, contact Attain"},
+            deviceDataA: {"config":"not yet defined, contact Attain"},
+            deviceDataL: {"config":"not yet defined, contact Attain"}
         };
     },
 
@@ -66,7 +66,7 @@ const app = Vue.createApp({
             }
             var z = this.item;
             console.log(z);
-            url = https://attain.aeronlabs.com/getDeviceConfig?item=${z};
+            url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
             fetch(url).then(res => {
                 if (res.status === 200) {
                     res.json().then(data => {
