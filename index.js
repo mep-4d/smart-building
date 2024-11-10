@@ -28,7 +28,8 @@ const app = Vue.createApp({
             equipmentReference:"",
             deviceDataT: "",
             deviceDataA: "",
-            deviceDataL: ""
+            deviceDataL: "",
+            pointsListA: ""
         };
     },
 
@@ -36,6 +37,18 @@ const app = Vue.createApp({
     },
 
     methods: {
+        
+        this.getPoints();
+        getPoints() {
+            url = 'https://attain.aeronlabs.com/getPoints';
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        console.log(data);
+                    });
+                }
+            });
+        },
 
         setSystem() {
             var x = this.selectA;
