@@ -78,7 +78,7 @@ const app = Vue.createApp({
                 }
             });
             this.getAssetName();
-        }
+        },
 
         getAssetName() {
             const generateString = function() {
