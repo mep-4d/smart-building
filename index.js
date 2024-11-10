@@ -71,6 +71,7 @@ const app = Vue.createApp({
                 if (res.status === 200) {
                     res.json().then(data => {
                         console.log(data);
+                        //test
                         this.deviceDataT = data.telemetry;
                         this.deviceDataA = data.attributes;
                         this.deviceDataL = data.logic;
