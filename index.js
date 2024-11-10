@@ -49,7 +49,7 @@ const app = Vue.createApp({
                         console.log(data);
                         this.dataObject = data
                         for (var i=0; i<data[0].length; i++) {
-                            this.listB.push(data[0][i][0])
+                            this.listB.push(data[0][i][0]);
                         }
                     });
                 }
@@ -61,8 +61,8 @@ const app = Vue.createApp({
             var y = this.dataObject;
             for (var i=0; i<y[0].length; i++) {
                 if (y[0][i][0] == x) {
-                    this.item = y[0][i][1]
-                    this.sys = y[0][i][2]
+                    this.item = y[0][i][1];
+                    this.sys = y[0][i][2];
                 }
             }
             var z = this.item;
