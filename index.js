@@ -34,11 +34,6 @@ const app = Vue.createApp({
     },
 
     computed: {
-        getPoints();
-    },
-
-    methods: {
-
         getPoints() {
             const url = 'https://attain.aeronlabs.com/getPoints';
             fetch(url).then(res => {
@@ -48,7 +43,11 @@ const app = Vue.createApp({
                     });
                 }
             });
-        },
+        }
+        this.getPoints();
+    },
+
+    methods: {
     
         setSystem() {
             var x = this.selectA;
