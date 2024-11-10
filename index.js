@@ -34,21 +34,10 @@ const app = Vue.createApp({
     },
 
     computed: {
-        getPoints() {
-            const url = 'https://attain.aeronlabs.com/getPoints';
-            fetch(url).then(res => {
-                if (res.status === 200) {
-                    res.json().then(data => {
-                        console.log(data);
-                    });
-                }
-            });
-        }
         this.getPoints();
     },
 
     methods: {
-    
         setSystem() {
             var x = this.selectA;
             this.listB = [];
@@ -66,7 +55,7 @@ const app = Vue.createApp({
                 }
             });
         },
-
+    
 setItem() {
     const x = this.selectB; 
     const y = this.dataObject;
@@ -76,11 +65,9 @@ setItem() {
             this.sys = y[0][i][2];
         }
     }
-    
     const z = this.item;
     console.log(z);
     const url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
-    
     fetch(url).then(res => {
         if (res.ok) {  
             return res.json().then(data => {
@@ -106,7 +93,6 @@ setItem() {
         this.deviceDataA = {"config": "not yet defined, contact Attain"};
         this.deviceDataL = {"config": "not yet defined, contact Attain"};
     });
-
     this.getAssetName();
 },
 
@@ -125,6 +111,17 @@ setItem() {
             var inst = "NNNN-"
             var proj = "ABCD"
             this.equipmentReference = "Equipment Name : " + type + "-" + floor + inst + proj + " , where FFF is a floor number or zone reference, and NNNN is a unique equipment instance/reference for that floor, and ABCD is the unique Attain project reference"
+        },
+    
+        getPoints() {
+            const url = 'https://attain.aeronlabs.com/getPoints';
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        console.log(data);
+                    });
+                }
+            });
         }
 
     }
