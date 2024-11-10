@@ -56,31 +56,49 @@ const app = Vue.createApp({
             });
         },
 
-        setItem() {
-            var x = this.selectB; 
-            var y = this.dataObject;
-            for (var i=0; i<y[0].length; i++) {
-                if (y[0][i][0] == x) {
-                    this.item = y[0][i][1]
-                    this.sys = y[0][i][2]
-                }
-            }
-            var z = this.item;
-            console.log(z);
-            url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
-            fetch(url).then(res => {
-                if (res.status === 200) {
-                    // SUCCESS
-                    res.json().then(data => {
-                        console.log(data);
-                        this.deviceDataT = data.telemetry;
-                        this.deviceDataA = data.attributes;
-                        this.deviceDataL = data.logic;
-                    });
-                }
+setItem() {
+    var x = this.selectB; 
+    var y = this.dataObject;
+    for (var i = 0; i < y[0].length; i++) {
+        if (y[0][i][0] == x) {
+            this.item = y[0][i][1];
+            this.sys = y[0][i][2];
+        }
+    }
+
+    var z = this.item;
+    console.log(z);
+    const url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
+
+    fetch(url).then(res => {
+        if (res.status === 200) {
+            // SUCCESS
+            res.json().then(data => {
+                console.log(data);
+
+                // Fallback message if any part of data is undefined
+                const defaultMessage = { "data": "not yet defined, contact Attain team" };
+                
+                // Assign data or default message if data is missing
+                this.deviceDataT = data.telemetry || defaultMessage;
+                this.deviceDataA = data.attributes || defaultMessage;
+                this.deviceDataL = data.logic || defaultMessage;
             });
-            this.getAssetName();
-        },
+        } else {
+            // Handle non-200 response here if needed
+            console.log("Error: Unable to fetch data.");
+        }
+    }).catch(error => {
+        console.log("Fetch error:", error);
+        // Fallback in case of fetch failure
+        const defaultMessage = { "data": "not yet defined, contact Attain team" };
+        this.deviceDataT = defaultMessage;
+        this.deviceDataA = defaultMessage;
+        this.deviceDataL = defaultMessage;
+    });
+
+    this.getAssetName();
+},
 
         getAssetName() {
             const generateString = function() {
