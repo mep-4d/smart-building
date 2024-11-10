@@ -26,9 +26,9 @@ const app = Vue.createApp({
             item:"",
             sys:"",
             equipmentReference:"",
-            deviceDataT: {"config":"not yet defined, contact Attain"},
-            deviceDataA: {"config":"not yet defined, contact Attain"},
-            deviceDataL: {"config":"not yet defined, contact Attain"}
+            deviceDataT: "not yet defined, contact Attain",
+            deviceDataA: "not yet defined, contact Attain",
+            deviceDataL: "not yet defined, contact Attain"
         };
     },
 
