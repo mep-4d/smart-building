@@ -70,16 +70,14 @@ setItem() {
     const url = `https://attain.aeronlabs.com/getDeviceConfig?item=${z}`;
     
     fetch(url).then(res => {
-        if (res.ok) {  // Checks if the status code is in the 200–299 range
+        if (res.ok) {  
             return res.json().then(data => {
                 console.log(data);
-                // Update device data fields if JSON parsing is successful
                 this.deviceDataT = data.telemetry || {"config": "not defined"};
                 this.deviceDataA = data.attributes || {"config": "not defined"};
                 this.deviceDataL = data.logic || {"config": "not defined"};
             }).catch(jsonError => {
                 console.error("JSON parsing error:", jsonError);
-                // Set default values if JSON is invalid or empty
                 this.deviceDataT = {"config": "not yet defined, contact Attain"};
                 this.deviceDataA = {"config": "not yet defined, contact Attain"};
                 this.deviceDataL = {"config": "not yet defined, contact Attain"};
