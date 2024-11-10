@@ -96,7 +96,7 @@ setItem() {
     });
 
     this.getAssetName();
-}
+},
 
         getAssetName() {
             const generateString = function() {
