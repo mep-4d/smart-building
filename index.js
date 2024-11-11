@@ -5,7 +5,8 @@ const app = Vue.createApp({
             selectA: "",
             selectB: "",
             listA: [
-                "Attain Profiled", 
+                "Attain HVAC",
+                "Attain Metering",
                 "General MEP", 
                 "HVAC-R", 
                 "Electrical Service", 
