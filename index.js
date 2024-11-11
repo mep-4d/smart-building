@@ -34,7 +34,7 @@ const app = Vue.createApp({
     },
 
     mounted() {
-        this.getPoints(); // Call getPoints when the component is mounted
+        this.getPoints(); 
     },
 
     methods: {
