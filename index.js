@@ -10,7 +10,6 @@ const app = Vue.createApp({
                 "General MEP", 
                 "HVAC-R", 
                 "Electrical Service", 
-                "Metering System",
                 "Security System",
                 "Audio/Visual System",
                 "Vertical Transportation",
