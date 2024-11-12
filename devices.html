@@ -39,7 +39,7 @@
         </div>
 
         <!-- Sidebar/menu -->
-        <nav class="n0-sidebar n0-collapse n0-white n0-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <nav v-show="sidebarVisible" class="n0-sidebar n0-collapse n0-white n0-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="n0-container n0-row">
                 <div class="n0-col s4">
                     <!--<img src="/w3images/avatar2.png" class="n0-circle n0-margin-right" style="width:46px">-->
@@ -56,13 +56,13 @@
                 <h5>Menu</h5>
             </div>
             <div class="n0-bar-block">
-                <a href="#" class="n0-bar-item n0-button n0-padding-16 n0-hide-large n0-dark-grey n0-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+                <a href="#" class="n0-bar-item n0-button n0-padding-16 n0-hide-large n0-dark-grey n0-hover-black" @click="closeSidebar" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
                 <a href="./index" class="n0-bar-item n0-button n0-padding"><i class="fa fa-home"></i>  Home</a>
             </div>
         </nav>
 
         <!-- Overlay effect when opening sidebar on small screens -->
-        <div class="n0-overlay n0-hide-large n0-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+        <div v-show="sidebarVisible" class="n0-overlay n0-hide-large n0-animate-opacity" @click="closeSidebar" style="cursor:pointer"
             title="close side menu" id="myOverlay"></div>
 
         <!-- !PAGE CONTENT! -->
@@ -121,34 +121,8 @@
     </div>
 </div>
 
-        <!-- End page content -->
+    <!-- End page content -->
     </div>
-
-    <script>
-        // Get the Sidebar
-var mySidebar = document.getElementById("mySidebar");
-
-// Get the DIV with overlay effect
-var overlayBg = document.getElementById("myOverlay");
-
-// Toggle between showing and hiding the sidebar, and add overlay effect
-function w3_open() {
-  console.log("blahBlahBlah");
-  if (mySidebar.style.display === 'block') {
-    mySidebar.style.display = 'none';
-    overlayBg.style.display = "none";
-  } else {
-    mySidebar.style.display = 'block';
-    overlayBg.style.display = "block";
-  }
-}
-
-// Close the sidebar with the close button
-function w3_close() {
-  mySidebar.style.display = "none";
-  overlayBg.style.display = "none";
-}
-    </script>
 
 </body>
 
