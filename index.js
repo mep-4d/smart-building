@@ -1,6 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
+            sideBarVisible: false,
             dataObject: "",
             selectA: "",
             selectB: "",
@@ -38,6 +39,13 @@ const app = Vue.createApp({
     },
 
     methods: {
+        toggleSidebar() {
+            this.sidebarVisible = !this.sidebarVisible;
+        },
+        closeSidebar() {
+            this.sidebarVisible = false;
+        },
+        
         getPoints() {
             const url = 'https://attain.aeronlabs.com/getPoints';
             fetch(url).then(res => {
