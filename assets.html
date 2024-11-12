@@ -70,29 +70,46 @@
 
             <!-- Header -->
             <header class="n0-container">
-                <h3><b>Asset Documentation</b></h3>
+                <h3><b>Asset Data</b></h3>
             </header>
 
-        <div class="n0-container n0-padding-16 n0-teal">
-        <h5>Telemetry keys list for all MEP equipment items</h5>
-        <hr>
-        <div class="n0-responsive">
-            <table class="n0-table n0-bordered n0-hoverable">
-                <thead>
-                    <tr class="n0-teal">
-                        <th v-for="(value, key) in pointsListA[0]" :key="key">{{ key }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(point, index) in pointsListA" :key="index">
-                        <td v-for="(value, key) in point" :key="key">{{ value }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>  
-        </div>
+            <div class="n0-container n0-padding-16 n0-teal">
+                <h3>Equipment Selection</h3>
+                <hr>
+                <div class="n0-row-padding-small">
+                    <div class="n0-third">
+                        <select v-model="selectA" v-on:change="setSystem()" class="n0-select" name="option">
+                        <option value="" disabled selected>Select System</option>
+                        <option v-for="item in listA">{{ item }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="n0-container n0-padding-16 n0-teal">
+                <p>{{ equipmentReference }}</p>
+            </div>
 
-        <hr>
+            <hr>
+
+<div class="n0-container n0-padding-16 n0-teal">
+    <h3>Configuration Detail</h3>
+    <div class="n0-row-padding-small">
+        <div class="n0-half n0-border n0-round n0-padding n0-card">
+            <p>Timeseries - Sent every 15 minutes</p>
+            <ul>
+                <li v-for="(value, key) in deviceDataT" :key="key">{{ key }}: {{ value }}</li>
+            </ul>
+        </div>
+        <div class="n0-half n0-border n0-round n0-padding n0-card">
+            <p>Semi-Static Data - Change at setup</p>
+            <ul>
+                <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <!-- End page content -->
     </div>
 
     <script>
