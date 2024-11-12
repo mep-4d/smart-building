@@ -1,7 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
-            sideBarVisible: false,
+            sidebarVisible: false,
             dataObject: "",
             selectA: "",
             selectB: "",
