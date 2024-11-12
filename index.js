@@ -31,12 +31,13 @@ const app = Vue.createApp({
             deviceDataA: "",
             deviceDataL: "",
             pointsListA: [],
-            assetEndpointList : []
+            assetEndpointListA : []
         };
     },
 
     mounted() {
         this.getPoints(); 
+        this.getAssetEndpoints(); 
     },
 
     methods: {
@@ -54,6 +55,18 @@ const app = Vue.createApp({
                     res.json().then(data => {
                         console.log(data);
                         this.pointsListA = data;
+                    });
+                }
+            });
+        },
+
+        getAssetEndpoints() {
+            const url = 'https://attain.aeronlabs.com/assetEndpointsA';
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        console.log(data);
+                        this.assetEndpointListA = data;
                     });
                 }
             });
