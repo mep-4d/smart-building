@@ -30,7 +30,8 @@ const app = Vue.createApp({
             deviceDataT: "",
             deviceDataA: "",
             deviceDataL: "",
-            pointsListA: []
+            pointsListA: [],
+            assetEndpointList : []
         };
     },
 
