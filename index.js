@@ -32,7 +32,8 @@ const app = Vue.createApp({
             deviceDataL: "",
             pointsListA: [],
             selectP: "",
-            assetEndpointListA : []
+            assetEndpointListA : [],
+            selectedEndpoint : ""
         };
     },
 
@@ -68,6 +69,19 @@ const app = Vue.createApp({
                     res.json().then(data => {
                         console.log(data);
                         this.assetEndpointListA = data;
+                    });
+                }
+            });
+        },
+
+        getAssetEndpoint() {
+            const endP = this.selectP;
+            const url = `https://attain.aeronlabs.com/assetEndpointsB?endPoint=${endP}`;
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        console.log(data);
+                        this.selectedEndpoint = data;
                     });
                 }
             });
