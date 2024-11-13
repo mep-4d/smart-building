@@ -32,8 +32,9 @@ const app = Vue.createApp({
             deviceDataL: "",
             pointsListA: [],
             selectP: "",
-            assetEndpointListA : [],
-            selectedEndpoint : ""
+            endPointString: "",
+            assetEndpointListA: [],
+            selectedEndpoint: ""
         };
     },
 
@@ -76,6 +77,7 @@ const app = Vue.createApp({
 
         getAssetEndpoint() {
             const endP = this.selectP;
+            this.endPointString = `https://<host>/api/plugins/telemetry/ASSET/<assetID>/values/attributes?keys=${endP}`;
             const url = `https://attain.aeronlabs.com/assetEndpointsB?endPoint=${endP}`;
             fetch(url).then(res => {
                 if (res.status === 200) {
