@@ -95,13 +95,11 @@
     <h3>Configuration Detail</h3>
     <div class="n0-row-padding-small">
         <div class="n0-half n0-border n0-round n0-padding n0-card">
-            <p>Timeseries - Sent every 15 minutes</p>
-            <ul>
-                <li v-for="(value, key) in deviceDataT" :key="key">{{ key }}: {{ value }}</li>
-            </ul>
+            <p>Data Object Example</p>
+            <p> {{ selectedEndpoint }} </p>
         </div>
         <div class="n0-half n0-border n0-round n0-padding n0-card">
-            <p>Semi-Static Data - Change at setup</p>
+            <p>Information</p>
             <ul>
                 <li v-for="(value, key) in deviceDataA" :key="key">{{ key }}: {{ value }}</li>
             </ul>
