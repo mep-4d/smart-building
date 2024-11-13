@@ -24,6 +24,12 @@
         h5 {
             font-family: "Raleway", sans-serif
         }
+        .number { color: darkorange; }
+        .string { color: green; }
+        .key { color: blue; font-weight: bold; }
+        .boolean { color: purple; }
+        .null { color: red; }
+        .n0-code { white-space: pre-wrap; }
     </style>
 
 </head>
@@ -94,7 +100,7 @@
 <div class="n0-container n0-light-grey n0-padding">
     <h3>Configuration Detail</h3>
         <p>Data Object Example</p>
-        <pre class="n0-code n0-small">{{ selectedEndpoint }}</pre>
+        <pre class="n0-code n0-small" v-html="syntaxHighlight(selectedEndpoint)"></pre>
 </div>
 
     <!-- End page content -->
