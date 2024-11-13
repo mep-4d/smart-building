@@ -32,7 +32,7 @@ const app = Vue.createApp({
             deviceDataL: "",
             pointsListA: [],
             selectP: "",
-            endPointString: "",
+            endPointString: "select from list",
             assetEndpointListA: [],
             selectedEndpoint: ""
         };
