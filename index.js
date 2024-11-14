@@ -63,21 +63,36 @@ const app = Vue.createApp({
             });
         },
 
-    syntaxHighlight(json) {
-        json = JSON.stringify(json, undefined, 4);
-        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-            let cls = 'number';
-            if (/^"/.test(match)) {
-                cls = /:$/.test(match) ? 'key' : 'string';
-            } else if (/true|false/.test(match)) {
-                cls = 'boolean';
-            } else if (/null/.test(match)) {
-                cls = 'null';
-            }
-            return '<span class="' + cls + '">' + match + '</span>';
-        });
-    },
+syntaxHighlight(input) {
+    let jsonString;
+
+    // Check if the input is a JSON object or valid JSON string
+    if (typeof input === "string") {
+        try {
+            jsonString = JSON.stringify(JSON.parse(input), undefined, 4);
+        } catch (error) {
+            // If input is not valid JSON, treat it as plain text
+            return `<span class="string">${input}</span>`;
+        }
+    } else {
+        // If input is already a JSON object
+        jsonString = JSON.stringify(input, undefined, 4);
+    }
+
+    // Continue with syntax highlighting as usual
+    jsonString = jsonString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return jsonString.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        let cls = 'number';
+        if (/^"/.test(match)) {
+            cls = /:$/.test(match) ? 'key' : 'string';
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+},
 
         getAssetEndpoints() {
             const url = 'https://attain.aeronlabs.com/assetEndpointsA';
