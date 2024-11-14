@@ -62,10 +62,20 @@ const app = Vue.createApp({
                 }
             });
         },
-
-syntaxHighlight(input) {
+        getAssetEndpoints() {
+            const url = 'https://attain.aeronlabs.com/assetEndpointsA';
+            fetch(url).then(res => {
+                if (res.status === 200) {
+                    res.json().then(data => {
+                        console.log(data);
+                        this.assetEndpointListA = data;
+                    });
+                }
+            });
+        },
+        
+    syntaxHighlight(input) {
     let jsonString;
-
     // Check if the input is a JSON object or valid JSON string
     if (typeof input === "string") {
         try {
@@ -78,7 +88,6 @@ syntaxHighlight(input) {
         // If input is already a JSON object
         jsonString = JSON.stringify(input, undefined, 4);
     }
-
     // Continue with syntax highlighting as usual
     jsonString = jsonString.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return jsonString.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
@@ -98,7 +107,6 @@ getAssetEndpoint() {
     const endP = this.selectP;
     this.endPointString = `https://<host>/api/plugins/telemetry/ASSET/<assetID>/values/attributes?keys=${endP}`;
     const url = `https://attain.aeronlabs.com/assetEndpointsB?endPoint=${endP}`;
-    
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -121,20 +129,6 @@ getAssetEndpoint() {
             this.selectedEndpoint = `Error: ${error}`;
         });
 },
-
-        getAssetEndpoint() {
-            const endP = this.selectP;
-            this.endPointString = `https://<host>/api/plugins/telemetry/ASSET/<assetID>/values/attributes?keys=${endP}`;
-            const url = `https://attain.aeronlabs.com/assetEndpointsB?endPoint=${endP}`;
-            fetch(url).then(res => {
-                if (res.status === 200) {
-                    res.json().then(data => {
-                        console.log(data);
-                        this.selectedEndpoint = data;
-                    });
-                }
-            });
-        },
     
         setSystem() {
             const x = this.selectA;
